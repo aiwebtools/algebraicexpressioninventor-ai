@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Heart, Phone, Mail, ExternalLink } from 'lucide-react';
+import { Heart, Phone, Mail, ExternalLink, MessageCircleQuestion } from 'lucide-react';
 import LogoSection from './LogoSection';
 
 const Footer: React.FC = () => {
@@ -105,13 +105,11 @@ const Footer: React.FC = () => {
                 <ExternalLink className="ml-2 w-4 h-4" />
               </a>
               <a 
-                href="https://www.aiwebtools.ai" 
-                target="_blank" 
-                rel="noopener noreferrer"
+                href="#faq" 
                 className="inline-flex items-center justify-center py-3 px-6 rounded-full bg-gradient-to-r from-cyber-primary to-cyber-highlight text-white font-semibold hover:shadow-lg hover:shadow-cyber-primary/20 transition-all transform hover:-translate-y-1"
               >
-                <span>More AI Tools</span>
-                <ExternalLink className="ml-2 w-4 h-4" />
+                <MessageCircleQuestion className="mr-2 w-5 h-5" />
+                <span>FAQ Section</span>
               </a>
             </div>
           </div>
@@ -144,3 +142,4 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
