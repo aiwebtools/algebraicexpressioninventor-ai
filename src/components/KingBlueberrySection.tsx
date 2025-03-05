@@ -31,11 +31,27 @@ const KingBlueberrySection: React.FC = () => {
               href="https://chatgpt.com/g/g-UcqXcLbzK-king-blueberry-gpt" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center py-3 px-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1 group"
+              className="inline-flex items-center justify-center py-3 px-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1 group mb-10"
             >
               <span>TRY KING BLUEBERRY NOW</span>
               <ExternalLink className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
+            
+            {/* YouTube Video Embed - with autoplay, HD quality, and unmuted */}
+            <div className="mt-8 mb-12 relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-blue-500/30">
+              <div className="aspect-w-16 aspect-h-9">
+                <iframe 
+                  width="100%" 
+                  height="100%" 
+                  src="https://www.youtube.com/embed/U8TLg15RTg8?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&vq=hd1080" 
+                  title="King Blueberry Video"
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                ></iframe>
+              </div>
+            </div>
           </div>
           
           <div className="relative mt-12 rounded-2xl overflow-hidden border border-blue-500/20 shadow-[0_0_50px_rgba(59,130,246,0.2)]">
