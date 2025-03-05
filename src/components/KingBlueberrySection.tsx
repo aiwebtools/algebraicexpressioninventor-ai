@@ -37,18 +37,16 @@ const KingBlueberrySection: React.FC = () => {
               <ExternalLink className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
             
-            {/* YouTube Video Embed - with autoplay, HD quality, and unmuted */}
-            <div className="mt-8 mb-12 relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-blue-500/30">
-              <div className="aspect-w-16 aspect-h-9">
+            {/* YouTube Video Embed - with responsive container and explicit sizing */}
+            <div className="w-full max-w-4xl mx-auto my-10">
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl shadow-2xl border border-blue-500/30">
                 <iframe 
-                  width="100%" 
-                  height="100%" 
                   src="https://www.youtube.com/embed/U8TLg15RTg8?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&vq=hd1080" 
                   title="King Blueberry Video"
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute top-0 left-0 w-full h-full"
                 ></iframe>
               </div>
             </div>
