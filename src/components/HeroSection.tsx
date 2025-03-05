@@ -1,6 +1,5 @@
-
 import React, { useEffect, useRef } from 'react';
-import { Function, Code, BrainCircuit, ArrowRight } from 'lucide-react';
+import { Code, BrainCircuit, ArrowRight } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
   const mathElementsRef = useRef<HTMLDivElement>(null);
@@ -83,7 +82,7 @@ const HeroSection: React.FC = () => {
             
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 animate-slide-down" style={{ animationDelay: '0.4s' }}>
               <div className="flex items-center">
-                <Function className="w-5 h-5 text-cyber-primary mr-2" />
+                <Code className="w-5 h-5 text-cyber-primary mr-2" />
                 <span className="text-sm text-cyber-muted">Custom Functions</span>
               </div>
               <div className="flex items-center">

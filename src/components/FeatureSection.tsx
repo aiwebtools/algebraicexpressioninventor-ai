@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import { Brain, Code, Flask, Sparkles, Calculator, Lightbulb, LineChart, BarChart4 } from 'lucide-react';
+import { Brain, Code, Beaker, Sparkles, Calculator, Lightbulb, LineChart, BarChart4 } from 'lucide-react';
 
 const features = [
   {
@@ -29,7 +29,7 @@ const features = [
     description: "Visualize relationships and patterns with dynamic graphical representations."
   },
   {
-    icon: <Flask className="w-10 h-10 text-cyber-primary" />,
+    icon: <Beaker className="w-10 h-10 text-cyber-primary" />,
     title: "Real-World Applications",
     description: "Apply your custom expressions to actual scenarios for practical solutions."
   }

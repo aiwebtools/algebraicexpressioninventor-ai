@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Sigma, Function, Variable } from 'lucide-react';
+import { Hash, Code, Variable } from 'lucide-react';
 
 interface LogoSectionProps {
   className?: string;
@@ -14,8 +14,8 @@ const LogoSection: React.FC<LogoSectionProps> = ({ className }) => {
         <div className="absolute inset-0 bg-cyber-bg-light rounded-full border border-cyber-primary/30 shadow-[0_0_30px_rgba(139,92,246,0.3)]"></div>
         
         {/* Math icons layered for 3D effect */}
-        <Sigma className="absolute text-cyber-primary/20 w-16 h-16 transform rotate-12 animate-pulse-soft" />
-        <Function className="absolute text-cyber-highlight/40 w-14 h-14 transform -rotate-6 animate-float" style={{ animationDelay: '0.5s' }} />
+        <Hash className="absolute text-cyber-primary/20 w-16 h-16 transform rotate-12 animate-pulse-soft" />
+        <Code className="absolute text-cyber-highlight/40 w-14 h-14 transform -rotate-6 animate-float" style={{ animationDelay: '0.5s' }} />
         <Variable className="absolute text-white w-10 h-10 transform animate-glow" />
       </div>
       
