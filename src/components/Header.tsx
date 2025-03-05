@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import LogoSection from './LogoSection';
@@ -51,19 +50,18 @@ const Header: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo - simplified for mobile */}
+        {/* Logo - completely hidden on smallest screens, only icon shown on small screens */}
         <a href="#" className="flex items-center space-x-2 z-20">
-          <LogoSection className={isMobile ? "hidden sm:flex" : "flex"} />
-          <span className={`text-xl font-bold sm:hidden text-cyber-text ${isMenuOpen ? 'text-white' : ''}`}>AEI-GPT</span>
+          <LogoSection className="flex" compact={isMobile} />
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Desktop Navigation - fix spacing and alignment */}
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
           <a 
             href="https://chatgpt.com/g/g-ApSvxYVTF-algebraic-expression-inventor-gpt" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="cyber-button-primary animate-scale-in" 
+            className="cyber-button-primary animate-scale-in text-sm lg:text-base" 
             style={{ animationDelay: '0.1s' }}
           >
             CREATE MATH
@@ -72,7 +70,7 @@ const Header: React.FC = () => {
             href="https://chatgpt.com/g/g-UcqXcLbzK-king-blueberry-gpt"
             target="_blank" 
             rel="noopener noreferrer"
-            className="cyber-button-accent animate-scale-in" 
+            className="cyber-button-accent animate-scale-in text-sm lg:text-base" 
             style={{ animationDelay: '0.15s' }}
           >
             KING BLUEBERRY
@@ -81,7 +79,7 @@ const Header: React.FC = () => {
             href="https://www.aiwebtools.ai" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="cyber-button-secondary animate-scale-in" 
+            className="cyber-button-secondary animate-scale-in text-sm lg:text-base" 
             style={{ animationDelay: '0.2s' }}
           >
             MORE AI TOOLS
