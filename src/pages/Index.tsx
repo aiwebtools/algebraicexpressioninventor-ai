@@ -1,12 +1,62 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React, { useEffect } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import HeroSection from '../components/HeroSection';
+import FeatureSection from '../components/FeatureSection';
+import TestimonialSection from '../components/TestimonialSection';
+import FAQSection from '../components/FAQSection';
+import LegalSection from '../components/LegalSection';
+import AnimatedBackground from '../components/AnimatedBackground';
+
+const Index: React.FC = () => {
+  // Apply smooth scroll behavior for anchor links
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const href = this.getAttribute('href');
+        if (!href) return;
+        
+        const targetElement = document.querySelector(href);
+        if (!targetElement) return;
+        
+        window.scrollTo({
+          top: targetElement.getBoundingClientRect().top + window.scrollY - 80, // Offset for header
+          behavior: 'smooth'
+        });
+      });
+    });
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex flex-col bg-cyber-bg-dark text-cyber-text">
+      {/* Animated background with math symbols */}
+      <AnimatedBackground />
+      
+      {/* Header */}
+      <Header />
+      
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <HeroSection />
+        
+        {/* Feature Section */}
+        <FeatureSection />
+        
+        {/* Testimonial Section */}
+        <TestimonialSection />
+        
+        {/* FAQ Section */}
+        <FAQSection />
+        
+        {/* Legal Section */}
+        <LegalSection />
+      </main>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
