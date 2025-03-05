@@ -29,6 +29,14 @@ const Index: React.FC = () => {
         });
       });
     });
+    
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', function(e) {
+          e.preventDefault();
+        });
+      });
+    };
   }, []);
 
   return (

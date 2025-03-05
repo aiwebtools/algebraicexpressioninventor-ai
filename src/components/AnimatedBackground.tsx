@@ -41,22 +41,24 @@ const AnimatedBackground: React.FC = () => {
 
     // Create particles
     const createParticles = () => {
-      const particleCount = Math.min(50, Math.floor(window.innerWidth / 30));
+      const particleCount = Math.min(30, Math.floor(window.innerWidth / 40)); // Reduced particle count
       
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           symbol: symbols[Math.floor(Math.random() * symbols.length)],
-          size: Math.random() * 20 + 10,
-          speed: Math.random() * 0.4 + 0.1,
-          opacity: Math.random() * 0.5 + 0.1,
-          color: `rgba(139, 92, 246, ${Math.random() * 0.3 + 0.1})`
+          size: Math.random() * 16 + 8, // Slightly smaller sizes
+          speed: Math.random() * 0.3 + 0.1, // Slightly slower speed
+          opacity: Math.random() * 0.4 + 0.1,
+          color: `rgba(139, 92, 246, ${Math.random() * 0.2 + 0.1})` // Lower opacity
         });
       }
     };
 
     createParticles();
+
+    let animationFrameId: number;
 
     // Animation
     const animate = () => {
@@ -78,7 +80,7 @@ const AnimatedBackground: React.FC = () => {
         }
       });
       
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
@@ -86,6 +88,7 @@ const AnimatedBackground: React.FC = () => {
     // Cleanup
     return () => {
       window.removeEventListener('resize', setCanvasSize);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

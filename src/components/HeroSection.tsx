@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Code, BrainCircuit, ArrowRight } from 'lucide-react';
 
@@ -14,8 +15,9 @@ const HeroSection: React.FC = () => {
     // Clear any existing elements
     container.innerHTML = '';
     
-    // Create random math symbols
-    for (let i = 0; i < 15; i++) {
+    // Create random math symbols - reduced count for better performance
+    const symbolCount = Math.min(10, Math.floor(window.innerWidth / 100));
+    for (let i = 0; i < symbolCount; i++) {
       const symbol = document.createElement('div');
       const randomSymbol = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
       
@@ -34,6 +36,13 @@ const HeroSection: React.FC = () => {
       
       container.appendChild(symbol);
     }
+    
+    // Cleanup function
+    return () => {
+      if (mathElementsRef.current) {
+        mathElementsRef.current.innerHTML = '';
+      }
+    };
   }, []);
 
   return (
