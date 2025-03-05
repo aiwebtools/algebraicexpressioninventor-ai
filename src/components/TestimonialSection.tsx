@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useMobile } from '../hooks/useMobile';
 
 const testimonials = [
   {
@@ -27,7 +28,7 @@ const testimonials = [
 
 const TestimonialSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isMobile = useMobile();
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
@@ -46,11 +47,12 @@ const TestimonialSection: React.FC = () => {
     }
   };
 
-  // Mouse events for dragging
+  // Mouse events for dragging - optimized for mobile
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    // Mouse events
     const handleMouseDown = (e: MouseEvent) => {
       isDraggingRef.current = true;
       startXRef.current = e.pageX - container.offsetLeft;
@@ -75,43 +77,80 @@ const TestimonialSection: React.FC = () => {
       container.scrollLeft = scrollLeftRef.current - scroll;
     };
 
+    // Touch events for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isDraggingRef.current = true;
+        startXRef.current = e.touches[0].pageX - container.offsetLeft;
+        scrollLeftRef.current = container.scrollLeft;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isDraggingRef.current = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDraggingRef.current || e.touches.length !== 1) return;
+      const x = e.touches[0].pageX - container.offsetLeft;
+      const scroll = x - startXRef.current;
+      container.scrollLeft = scrollLeftRef.current - scroll;
+      
+      // Prevent page scrolling while swiping the testimonials
+      if (Math.abs(scroll) > 5) {
+        e.preventDefault();
+      }
+    };
+
+    // Add mouse event listeners
     container.addEventListener('mousedown', handleMouseDown);
     container.addEventListener('mouseup', handleMouseUp);
     container.addEventListener('mouseleave', handleMouseLeave);
     container.addEventListener('mousemove', handleMouseMove);
 
+    // Add touch event listeners for mobile
+    container.addEventListener('touchstart', handleTouchStart);
+    container.addEventListener('touchend', handleTouchEnd);
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+
     return () => {
+      // Remove mouse event listeners
       container.removeEventListener('mousedown', handleMouseDown);
       container.removeEventListener('mouseup', handleMouseUp);
       container.removeEventListener('mouseleave', handleMouseLeave);
       container.removeEventListener('mousemove', handleMouseMove);
+
+      // Remove touch event listeners
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchend', handleTouchEnd);
+      container.removeEventListener('touchmove', handleTouchMove);
     };
   }, []);
 
   return (
-    <section className="py-20 bg-cyber-bg-dark relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-cyber-bg-dark relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center px-4 py-1 mb-6 rounded-full bg-cyber-primary/10 border border-cyber-primary/20">
+        <div className="text-center mb-10 md:mb-16">
+          <div className="inline-flex items-center justify-center px-4 py-1 mb-4 md:mb-6 rounded-full bg-cyber-primary/10 border border-cyber-primary/20">
             <Star className="w-4 h-4 text-cyber-primary mr-2" />
             <span className="text-cyber-primary text-sm font-semibold">Testimonials</span>
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight">
             What Users Are <span className="text-gradient">Saying</span>
           </h2>
           
-          <p className="text-cyber-muted text-lg max-w-2xl mx-auto">
+          <p className="text-cyber-muted text-base md:text-lg max-w-2xl mx-auto">
             Discover how others are using Algebraic Expression Inventor GPT to solve complex problems
           </p>
         </div>
         
         {/* Testimonial slider with controls */}
         <div className="relative">
-          {/* Navigation buttons */}
+          {/* Navigation buttons - hidden on small mobile devices */}
           <button 
             onClick={() => scrollTo('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-cyber-bg-light/80 backdrop-blur-sm p-2 rounded-full border border-cyber-border hover:bg-cyber-primary/20 transition-colors duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-cyber-bg-light/80 backdrop-blur-sm p-2 rounded-full border border-cyber-border hover:bg-cyber-primary/20 transition-colors duration-300 hidden sm:block"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6 text-cyber-text" />
@@ -119,37 +158,48 @@ const TestimonialSection: React.FC = () => {
           
           <button 
             onClick={() => scrollTo('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-cyber-bg-light/80 backdrop-blur-sm p-2 rounded-full border border-cyber-border hover:bg-cyber-primary/20 transition-colors duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-cyber-bg-light/80 backdrop-blur-sm p-2 rounded-full border border-cyber-border hover:bg-cyber-primary/20 transition-colors duration-300 hidden sm:block"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-6 h-6 text-cyber-text" />
           </button>
           
-          {/* Testimonial container */}
+          {/* Testimonial container - optimized for mobile */}
           <div 
             ref={containerRef}
-            className="flex overflow-x-auto scrollbar-hidden pb-8 snap-x snap-mandatory cursor-grab"
+            className="flex overflow-x-auto scrollbar-hidden pb-8 snap-x snap-mandatory cursor-grab touch-pan-x"
             style={{ scrollbarWidth: 'none' }}
           >
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
-                className="min-w-[300px] sm:min-w-[350px] md:min-w-[400px] lg:min-w-[450px] p-6 mx-2 first:ml-4 last:mr-4 glass-card snap-center transition-transform duration-300 hover:transform hover:scale-[1.02]"
+                className={`${
+                  isMobile 
+                    ? 'min-w-[280px] sm:min-w-[350px]' 
+                    : 'min-w-[350px] md:min-w-[400px] lg:min-w-[450px]'
+                } p-4 sm:p-6 mx-2 first:ml-4 last:mr-4 glass-card snap-center transition-transform duration-300 hover:transform hover:scale-[1.02]`}
               >
-                <Quote className="w-10 h-10 text-cyber-primary/50 mb-4" />
-                <p className="mb-6 text-cyber-text">{testimonial.text}</p>
+                <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-cyber-primary/50 mb-3 md:mb-4" />
+                <p className="mb-4 md:mb-6 text-cyber-text text-sm md:text-base">{testimonial.text}</p>
                 <div className="flex items-center">
-                  <div className="mr-3 flex-shrink-0 w-10 h-10 rounded-full bg-cyber-primary/20 text-cyber-primary flex items-center justify-center font-bold">
+                  <div className="mr-3 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-cyber-primary/20 text-cyber-primary flex items-center justify-center font-bold">
                     {testimonial.author.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-semibold text-cyber-text">{testimonial.author}</p>
-                    <p className="text-cyber-muted text-sm">{testimonial.role}</p>
+                    <p className="font-semibold text-cyber-text text-sm md:text-base">{testimonial.author}</p>
+                    <p className="text-cyber-muted text-xs md:text-sm">{testimonial.role}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+          
+          {/* Add swipe indicator for mobile */}
+          {isMobile && (
+            <div className="text-center mt-2 text-cyber-muted text-xs">
+              Swipe left or right to see more
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -1,9 +1,11 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Code, BrainCircuit, ArrowRight } from 'lucide-react';
+import { useMobile } from '../hooks/useMobile';
 
 const HeroSection: React.FC = () => {
   const mathElementsRef = useRef<HTMLDivElement>(null);
+  const isMobile = useMobile();
 
   useEffect(() => {
     if (!mathElementsRef.current) return;
@@ -16,7 +18,10 @@ const HeroSection: React.FC = () => {
     container.innerHTML = '';
     
     // Create random math symbols - reduced count for better performance
-    const symbolCount = Math.min(10, Math.floor(window.innerWidth / 100));
+    const symbolCount = isMobile 
+      ? Math.min(5, Math.floor(window.innerWidth / 120))  // Even fewer on mobile
+      : Math.min(10, Math.floor(window.innerWidth / 100));
+      
     for (let i = 0; i < symbolCount; i++) {
       const symbol = document.createElement('div');
       const randomSymbol = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
@@ -31,8 +36,8 @@ const HeroSection: React.FC = () => {
       // Random animation delay
       symbol.style.animationDelay = `${Math.random() * 5}s`;
       
-      // Random opacity
-      symbol.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+      // Random opacity - lower on mobile
+      symbol.style.opacity = `${Math.random() * (isMobile ? 0.3 : 0.5) + 0.1}`;
       
       container.appendChild(symbol);
     }
@@ -43,11 +48,11 @@ const HeroSection: React.FC = () => {
         mathElementsRef.current.innerHTML = '';
       }
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="relative min-h-screen pt-24 pb-16 flex items-center overflow-hidden">
-      {/* Floating math elements container */}
+      {/* Floating math elements container - conditionally render fewer on mobile */}
       <div ref={mathElementsRef} className="absolute inset-0 z-0 overflow-hidden"></div>
       
       {/* Grid background */}
@@ -61,12 +66,12 @@ const HeroSection: React.FC = () => {
               <span className="text-cyber-primary text-sm font-semibold">Algebraic Expression Inventor</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight animate-slide-down" style={{ animationDelay: '0.1s' }}>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 tracking-tight leading-tight animate-slide-down" style={{ animationDelay: '0.1s' }}>
               <span className="text-gradient">Invent New Math</span> <br />
               <span className="text-cyber-text">to Solve Any Problem</span>
             </h1>
             
-            <p className="text-cyber-muted text-lg mb-8 max-w-xl animate-slide-down" style={{ animationDelay: '0.2s' }}>
+            <p className="text-cyber-muted text-base md:text-lg mb-8 max-w-xl animate-slide-down" style={{ animationDelay: '0.2s' }}>
               Create custom algebraic expressions and innovative mathematical concepts 
               to tackle real-world challenges with precision and creativity.
             </p>
@@ -89,7 +94,7 @@ const HeroSection: React.FC = () => {
               </a>
             </div>
             
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6 animate-slide-down" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 animate-slide-down" style={{ animationDelay: '0.4s' }}>
               <div className="flex items-center">
                 <Code className="w-5 h-5 text-cyber-primary mr-2" />
                 <span className="text-sm text-cyber-muted">Custom Functions</span>
@@ -105,9 +110,9 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
           
-          {/* Hero image */}
+          {/* Hero image - optimized for mobile */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end animate-slide-up">
-            <div className="relative group">
+            <div className="relative group max-w-full">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-cyber-primary to-cyber-highlight rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
               <a 
                 href="https://chatgpt.com/g/g-ApSvxYVTF-algebraic-expression-inventor-gpt" 
@@ -118,9 +123,9 @@ const HeroSection: React.FC = () => {
                 <img 
                   src="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:40" 
                   alt="Algebraic Expression Inventor GPT" 
-                  className="rounded-xl max-w-full object-cover border border-cyber-border/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
-                  width={600}
-                  height={400}
+                  className="rounded-xl w-full max-w-[500px] mx-auto object-cover border border-cyber-border/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]"
+                  width={500}
+                  height={333}
                   loading="lazy"
                 />
               </a>

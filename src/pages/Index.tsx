@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
@@ -11,37 +11,41 @@ import AnimatedBackground from '../components/AnimatedBackground';
 import KingBlueberrySection from '../components/KingBlueberrySection';
 
 const Index: React.FC = () => {
-  // Apply smooth scroll behavior for anchor links
+  // Optimized smooth scroll behavior with useCallback
+  const handleAnchorClick = useCallback((e: Event) => {
+    e.preventDefault();
+    
+    const target = e.currentTarget as HTMLAnchorElement;
+    const href = target.getAttribute('href');
+    if (!href) return;
+    
+    const targetElement = document.querySelector(href);
+    if (!targetElement) return;
+    
+    window.scrollTo({
+      top: targetElement.getBoundingClientRect().top + window.scrollY - 80, // Offset for header
+      behavior: 'smooth'
+    });
+  }, []);
+
+  // Apply smooth scroll behavior for anchor links - optimized with proper cleanup
   useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const href = this.getAttribute('href');
-        if (!href) return;
-        
-        const targetElement = document.querySelector(href);
-        if (!targetElement) return;
-        
-        window.scrollTo({
-          top: targetElement.getBoundingClientRect().top + window.scrollY - 80, // Offset for header
-          behavior: 'smooth'
-        });
-      });
+    const anchors = document.querySelectorAll('a[href^="#"]');
+    
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick);
     });
     
     return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', function(e) {
-          e.preventDefault();
-        });
+      anchors.forEach(anchor => {
+        anchor.removeEventListener('click', handleAnchorClick);
       });
     };
-  }, []);
+  }, [handleAnchorClick]);
 
   return (
     <div className="min-h-screen flex flex-col bg-cyber-bg-dark text-cyber-text">
-      {/* Animated background with math symbols */}
+      {/* Animated background with math symbols - only render on non-mobile */}
       <AnimatedBackground />
       
       {/* Header */}
