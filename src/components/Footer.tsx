@@ -49,6 +49,17 @@ const Footer: React.FC = () => {
                 <a href="#faq" className="text-cyber-muted hover:text-cyber-primary transition-colors link-underline">FAQ</a>
               </li>
               <li>
+                <a 
+                  href="https://chatgpt.com/g/g-UcqXcLbzK-king-blueberry-gpt" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-cyber-muted hover:text-cyber-primary transition-colors link-underline flex items-center"
+                >
+                  <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full mr-2">NEW</span>
+                  King Blueberry Version
+                </a>
+              </li>
+              <li>
                 <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-cyber-muted hover:text-cyber-primary transition-colors link-underline">
                   Privacy Policy
                 </a>
@@ -83,15 +94,26 @@ const Footer: React.FC = () => {
           {/* More AI Tools Button */}
           <div className="lg:col-span-1 flex flex-col justify-between">
             <h3 className="text-lg font-bold mb-6 text-cyber-text">More Tools</h3>
-            <a 
-              href="https://www.aiwebtools.ai" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center py-3 px-6 rounded-full bg-gradient-to-r from-cyber-primary to-cyber-highlight text-white font-semibold hover:shadow-lg hover:shadow-cyber-primary/20 transition-all transform hover:-translate-y-1"
-            >
-              <span>More AI Tools</span>
-              <ExternalLink className="ml-2 w-4 h-4" />
-            </a>
+            <div className="space-y-4">
+              <a 
+                href="https://chatgpt.com/g/g-UcqXcLbzK-king-blueberry-gpt" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center py-3 px-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1 w-full"
+              >
+                <span>TRY KING BLUEBERRY</span>
+                <ExternalLink className="ml-2 w-4 h-4" />
+              </a>
+              <a 
+                href="https://www.aiwebtools.ai" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center py-3 px-6 rounded-full bg-gradient-to-r from-cyber-primary to-cyber-highlight text-white font-semibold hover:shadow-lg hover:shadow-cyber-primary/20 transition-all transform hover:-translate-y-1"
+              >
+                <span>More AI Tools</span>
+                <ExternalLink className="ml-2 w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
         

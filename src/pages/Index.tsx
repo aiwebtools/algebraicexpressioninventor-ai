@@ -8,6 +8,7 @@ import TestimonialSection from '../components/TestimonialSection';
 import FAQSection from '../components/FAQSection';
 import LegalSection from '../components/LegalSection';
 import AnimatedBackground from '../components/AnimatedBackground';
+import KingBlueberrySection from '../components/KingBlueberrySection';
 
 const Index: React.FC = () => {
   // Apply smooth scroll behavior for anchor links
@@ -44,6 +45,9 @@ const Index: React.FC = () => {
         
         {/* Feature Section */}
         <FeatureSection />
+
+        {/* King Blueberry Section */}
+        <KingBlueberrySection />
         
         {/* Testimonial Section */}
         <TestimonialSection />
