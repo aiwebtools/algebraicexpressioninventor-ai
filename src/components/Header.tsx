@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import LogoSection from './LogoSection';
@@ -51,9 +52,9 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo - completely hidden on smallest screens, only icon shown on small screens */}
-        <a href="#" className="flex items-center space-x-2 z-20">
+        <div className="flex items-center space-x-2 z-20">
           <LogoSection className="flex" compact={isMobile} />
-        </a>
+        </div>
 
         {/* Desktop Navigation - fix spacing and alignment */}
         <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
@@ -100,6 +101,13 @@ const Header: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-cyber-bg-dark/95 backdrop-blur-lg z-10 animate-fade-in">
           <nav className="flex flex-col px-6 py-20 space-y-4 h-full items-center justify-center">
+            <a 
+              href="#features"
+              className="cyber-button-secondary w-full text-center py-4"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              LEARN MORE
+            </a>
             <a 
               href="https://chatgpt.com/g/g-ApSvxYVTF-algebraic-expression-inventor-gpt" 
               target="_blank" 

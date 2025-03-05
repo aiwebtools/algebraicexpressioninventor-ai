@@ -87,7 +87,7 @@ const HeroSection: React.FC = () => {
                 <ArrowRight className="inline-block ml-2 transition-transform group-hover:translate-x-1" size={18} />
               </a>
               <a 
-                href="#how-it-works" 
+                href="#features" 
                 className="cyber-button-secondary"
               >
                 LEARN MORE

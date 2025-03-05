@@ -1,106 +1,83 @@
+import React from 'react';
 
-import React, { useRef, useEffect } from 'react';
-import { Brain, Code, Beaker, Sparkles, Calculator, Lightbulb, LineChart, BarChart4 } from 'lucide-react';
-
-const features = [
-  {
-    icon: <Brain className="w-10 h-10 text-cyber-primary" />,
-    title: "Invent New Mathematical Concepts",
-    description: "Create custom algebraic expressions tailored to your specific problems and scenarios."
-  },
-  {
-    icon: <Code className="w-10 h-10 text-cyber-primary" />,
-    title: "Python-Powered Solutions",
-    description: "Explore and validate your expressions with built-in Python integration for accurate results."
-  },
-  {
-    icon: <Calculator className="w-10 h-10 text-cyber-primary" />,
-    title: "Precise Variable Definition",
-    description: "Define variables with exact meaning and context to create meaningful expressions."
-  },
-  {
-    icon: <Lightbulb className="w-10 h-10 text-cyber-primary" />,
-    title: "Creative Problem-Solving",
-    description: "Approach complex problems from new angles with innovative mathematical frameworks."
-  },
-  {
-    icon: <LineChart className="w-10 h-10 text-cyber-primary" />,
-    title: "Data Visualization",
-    description: "Visualize relationships and patterns with dynamic graphical representations."
-  },
-  {
-    icon: <Beaker className="w-10 h-10 text-cyber-primary" />,
-    title: "Real-World Applications",
-    description: "Apply your custom expressions to actual scenarios for practical solutions."
-  }
-];
-
-const FeatureSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const cards = sectionRef.current?.querySelectorAll('.feature-card');
-            cards?.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('animate-scale-in');
-                card.classList.remove('opacity-0');
-              }, index * 100);
-            });
-            observer.disconnect(); // Only animate once
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
+const FeatureSection = () => {
   return (
-    <section id="features" className="py-20 bg-cyber-bg-light border-t border-b border-cyber-border/20 relative overflow-hidden">
-      {/* Background effect */}
-      <div className="absolute inset-0 bg-matrix-pattern opacity-10 animate-matrix-bg pointer-events-none"></div>
-      
-      <div className="container mx-auto px-4 relative z-10" ref={sectionRef}>
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center px-4 py-1 mb-6 rounded-full bg-cyber-primary/10 border border-cyber-primary/20">
-            <Sparkles className="w-4 h-4 text-cyber-primary mr-2" />
-            <span className="text-cyber-primary text-sm font-semibold">Powerful Features</span>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-            Create <span className="text-gradient">Mathematical Magic</span>
+    <section id="features" className="py-16 md:py-24 bg-cyber-bg-darker relative overflow-hidden">
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-cyber-grid bg-[size:60px_60px] opacity-5 pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section title */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-cyber-text mb-4">
+            Unleash the Power of Custom Math
           </h2>
-          
-          <p className="text-cyber-muted text-lg max-w-2xl mx-auto">
-            Solve any problem with custom-created mathematical expressions and formulas
-            tailored to your specific needs.
+          <p className="text-cyber-muted text-lg">
+            Explore the key features that make our Algebraic Expression Inventor GPT a game-changer.
           </p>
         </div>
-        
+
         {/* Features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="feature-card cyber-card opacity-0 transition-all duration-500 hover:transform hover:translate-y-[-4px]"
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="mb-5 p-3 inline-flex items-center justify-center rounded-lg bg-cyber-primary/10">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-              <p className="text-cyber-muted">{feature.description}</p>
-            </div>
-          ))}
+          {/* Feature 1 */}
+          <div className="p-6 bg-cyber-bg-light rounded-xl shadow-lg border border-cyber-border/20 hover:border-cyber-primary/50 transition-colors">
+            <h3 className="text-xl font-semibold text-cyber-text mb-3">
+              Custom Function Creation
+            </h3>
+            <p className="text-cyber-muted">
+              Define your own mathematical functions and operations to tailor the tool to your specific needs.
+            </p>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="p-6 bg-cyber-bg-light rounded-xl shadow-lg border border-cyber-border/20 hover:border-cyber-primary/50 transition-colors">
+            <h3 className="text-xl font-semibold text-cyber-text mb-3">
+              Python Integration
+            </h3>
+            <p className="text-cyber-muted">
+              Seamlessly integrate Python code to handle complex calculations and data processing tasks.
+            </p>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="p-6 bg-cyber-bg-light rounded-xl shadow-lg border border-cyber-border/20 hover:border-cyber-primary/50 transition-colors">
+            <h3 className="text-xl font-semibold text-cyber-text mb-3">
+              AI-Powered Assistance
+            </h3>
+            <p className="text-cyber-muted">
+              Leverage AI to assist in expression generation, optimization, and problem-solving.
+            </p>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="p-6 bg-cyber-bg-light rounded-xl shadow-lg border border-cyber-border/20 hover:border-cyber-primary/50 transition-colors">
+            <h3 className="text-xl font-semibold text-cyber-text mb-3">
+              Real-Time Visualization
+            </h3>
+            <p className="text-cyber-muted">
+              Visualize your algebraic expressions and their solutions in real-time with interactive graphs and charts.
+            </p>
+          </div>
+
+          {/* Feature 5 */}
+          <div className="p-6 bg-cyber-bg-light rounded-xl shadow-lg border border-cyber-border/20 hover:border-cyber-primary/50 transition-colors">
+            <h3 className="text-xl font-semibold text-cyber-text mb-3">
+              Automated Simplification
+            </h3>
+            <p className="text-cyber-muted">
+              Automatically simplify complex expressions to their most basic form for easier understanding.
+            </p>
+          </div>
+
+          {/* Feature 6 */}
+          <div className="p-6 bg-cyber-bg-light rounded-xl shadow-lg border border-cyber-border/20 hover:border-cyber-primary/50 transition-colors">
+            <h3 className="text-xl font-semibold text-cyber-text mb-3">
+              Cloud-Based Access
+            </h3>
+            <p className="text-cyber-muted">
+              Access your expressions and projects from anywhere with our secure cloud-based platform.
+            </p>
+          </div>
         </div>
       </div>
     </section>

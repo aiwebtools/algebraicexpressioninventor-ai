@@ -1,3 +1,4 @@
+
 import React, { useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -19,13 +20,15 @@ const Index: React.FC = () => {
     
     const target = e.currentTarget as HTMLAnchorElement;
     const href = target.getAttribute('href');
-    if (!href) return;
+    if (!href || !href.startsWith('#')) return;
     
-    const targetElement = document.querySelector(href);
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+    
     if (!targetElement) return;
     
     window.scrollTo({
-      top: targetElement.getBoundingClientRect().top + window.scrollY - 80, // Offset for header
+      top: targetElement.offsetTop - 80, // Offset for header
       behavior: 'smooth'
     });
   }, []);

@@ -26,7 +26,7 @@ const LogoSection: React.FC<LogoSectionProps> = ({ className, compact = false })
             Algebraic Expression Inventor GPT
           </h2>
           <p className="text-xs text-cyber-muted">
-            Presented by <a href="https://www.aiwebtools.ai" target="_blank" rel="noopener noreferrer" className="text-cyber-neon hover:underline">AiWebTools.Ai</a>
+            Presented by <span className="text-cyber-neon hover:underline">AiWebTools.Ai</span>
           </p>
         </div>
       )}
