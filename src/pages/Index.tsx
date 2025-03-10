@@ -1,4 +1,3 @@
-
 import React, { useEffect, useCallback } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -9,6 +8,7 @@ import FAQSection from '../components/FAQSection';
 import LegalSection from '../components/LegalSection';
 import AnimatedBackground from '../components/AnimatedBackground';
 import KingBlueberrySection from '../components/KingBlueberrySection';
+import DisclaimerPopup from '../components/DisclaimerPopup';
 import { useMobile } from '../hooks/useMobile';
 
 const Index: React.FC = () => {
@@ -50,6 +50,9 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-cyber-bg-dark text-cyber-text">
+      {/* Disclaimer Popup */}
+      <DisclaimerPopup />
+      
       {/* Animated background with math symbols - only render on non-mobile */}
       {!isMobile && <AnimatedBackground />}
       
