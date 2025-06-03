@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Shield, Check, X } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -24,11 +23,11 @@ const DisclaimerPopup: React.FC = () => {
     localStorage.setItem('disclaimerAgreed', 'true');
     setIsOpen(false);
     
-    // Show a toast notification
+    // Show a toast notification that fades after 2 seconds
     toast({
       title: "Welcome!",
       description: "Thanks for agreeing to our terms. Enjoy exploring Algebraic Expression Inventor GPT!",
-      duration: 5000,
+      duration: 2000,
     });
   };
   
