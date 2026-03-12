@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
                 CREATE MATH
               </a>
               <a 
-                href="https://www.aiwebtools.ai" 
+                href="https://aiwebtools.lovable.app/?via=aiwebtools" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="cyber-button-secondary text-sm px-4 py-2"
