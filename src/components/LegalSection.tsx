@@ -67,7 +67,7 @@ const LegalSection: React.FC = () => {
                     Privacy Policy
                   </a>. 
                   For complete terms and conditions governing the use of this tool, please review our 
-                  <a href="https://aiwebtools.ai/terms-of-services" target="_blank" rel="noopener noreferrer" className="text-cyber-primary ml-1 hover:underline">
+                  <a href="https://aiwebtools.lovable.app/?via=aiwebtools" target="_blank" rel="noopener noreferrer" className="text-cyber-primary ml-1 hover:underline">
                     Terms of Service
                   </a>.
                 </p>

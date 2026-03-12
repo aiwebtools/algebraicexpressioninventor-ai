@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   // Handle scroll effect with throttling for better performance
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let scrollTimeout: ReturnType<typeof setTimeout>;
     
     const handleScroll = () => {
       // Clear the timeout if it exists
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
             KING BLUEBERRY
           </a>
           <a 
-            href="https://www.aiwebtools.ai" 
+            href="https://aiwebtools.lovable.app/?via=aiwebtools" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cyber-button-secondary animate-scale-in text-sm lg:text-base" 
@@ -99,7 +99,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation - improved for performance */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-cyber-bg-dark/95 backdrop-blur-lg z-10 animate-fade-in">
+        <div className="md:hidden fixed inset-0 bg-cyber-bg-dark/95 backdrop-blur-lg z-10" style={{ animation: 'fadeIn 0.15s ease-out' }}>
           <nav className="flex flex-col px-6 py-20 space-y-4 h-full items-center justify-center">
             <a 
               href="#features"
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
               KING BLUEBERRY
             </a>
             <a 
-              href="https://www.aiwebtools.ai" 
+              href="https://aiwebtools.lovable.app/?via=aiwebtools" 
               target="_blank" 
               rel="noopener noreferrer"
               className="cyber-button-secondary w-full text-center py-4"
