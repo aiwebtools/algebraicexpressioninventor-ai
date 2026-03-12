@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   // Handle scroll effect with throttling for better performance
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
+    let scrollTimeout: ReturnType<typeof setTimeout>;
     
     const handleScroll = () => {
       // Clear the timeout if it exists
